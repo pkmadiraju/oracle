@@ -1,0 +1,42 @@
+1. Datafile and Tablespace Recovery Scenarios
+- Lost Non-SYSTEM Datafile: Restoring and recovering a standard user data file while keeping the rest of the database online.
+
+- Lost SYSTEM or SYSAUX Datafile: Handling the crash of a critical system dictionary file, requiring the database to be taken to a MOUNT state for recovery.
+
+- Accidendal Tablespace Deletion: Recovering from an accidental physical deletion of an entire underlying tablespace container at the OS level.
+
+2. Disaster Recovery (Loss of Core Architecture)
+- Loss of All Control Files: Rebuilding the database's brain using RMAN autobackups when all multiplexed copies of the control file are physically wiped out.
+
+- Loss of SPFILE (Initialization Parameters): Restoring the database startup configuration parameters from an RMAN backup when the server completely loses its configuration files.
+
+- Total Loss (Bare-Metal Restore): Simulating a complete server failure where you must restore the SPFILE, control files, datafiles, and apply archivelogs onto a completely blank instance.
+
+3. Database Duplication & Refresh Activities
+- Active Database Cloning (Network Duplication): Copying a running production instance over the network directly into a new Test/Dev instance without touching storage backups.
+
+- Backup-Based Database Cloning: Utilizing existing production backup sets on disk or tape to spin up an isolated staging database.
+
+- Point-in-Time Database Duplication: Cloning a database to a specific time or SCN in the past (e.g., cloning production exactly as it looked right before a bad application deployment).
+
+4. Multitenant (CDB/PDB) Specific Scenarios
+- Single Pluggable Database (PDB) Point-in-Time Recovery: Rewinding or recovering just one specific tenant PDB within a Container Database (CDB) without impacting the other running PDBs.
+
+- PDB Duplication/Cloning: Isolating a single PDB out of a production CDB and duplicating it into a separate development CDB.
+
+5. Advanced Recovery & Data Corruption Testing
+- Online Block Media Recovery (BMR): Repairing localized, isolated logical or physical block corruption within a massive datafile while users continue to read and write to the rest of the file.
+
+- Table-Level Point-in-Time Recovery: Extracting a single dropped or corrupted table out of an old backup without having to restore the entire multi-terabyte database.
+
+6. Data Guard & High Availability Activities
+- Active Standby Database Creation: Using RMAN to stream and construct a physical standby database to establish a Data Guard disaster recovery pair.
+
+- Data Guard Gap Resolution (Incremental Roll-Forward): Resolving a massive sequence gap on a lagging standby database using a specialized primary incremental backup, avoiding a full standby rebuild.
+
+7. Maintenance, Health Checks, & Validations
+- Database Corruption Probing: Running proactive, non-destructive validation scans to detect hidden physical and logical block corruptions before they cause an actual outage.
+
+- Backup Integrity Verification: Simulating a restore mock-drill to validate that the physical backup files are readable, uncorrupted, and viable for an emergency.
+
+- Repository Ledger Reconciliation: Crosschecking and synchronizing the physical backup assets on disk with the internal RMAN control file ledger, purging obsolete or missing pieces.
