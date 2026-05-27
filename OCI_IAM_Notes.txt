@@ -1,0 +1,40 @@
+Region:
+Hyderabad, Mumbai, Ashburn, Phoenix, Portland etc..
+
+AD(Availability Domain): 3 ADs for a multple AD region(Hyderabad is a single AD region)
+Gachibowli, Ameerpet, Lbnagar
+--> AD for disaster management = Dataguard
+
+FD(Fault Domain):3 FDs for a AD(Hyderabad is a 3FD region)
+3 racks in 3 buildings in a single location
+--> FD for availability or localized damage = RAC
+=============================================================================================
+IAM:
+Identity access management
+AuthN -- authentication -- who are you ?
+AuthZ -- authorization -- what are your privileges ?
+
+Tenancy --> Identity Domain --> Users --> Groups --> Policies --> Compartments --> Resource
+
+Identity Domain:
+Region specific intial authentication validator-- Password and MFA
+
+Compartment:
+Logical grouping of resources
+eg: All network resources in a network compartment
+Resource from different compartments can interact with each other.
+Resources can also be moved to other compartments.
+Resources from multiple regions can be in same compartment
+Quotas and budgets on compartments.
+Quotas--resource limit
+Budget--financial limit
+
+Sample Identity domain: Sandbox
+Sample user: OCIADMIN
+Sample group: oci-admin-group
+Sample Policy: oci-admin-group
+Policy Statements
+Allow group 'sandbox-domain'/'oci-admin-group' to manage buckets in compartment sandbox
+Allow group 'sandbox-domain'/'oci-admin-group' to manage objects in compartment sandbox
+
+Tenancy admin --> OCIADMIN --> oci-admin-group --> policies -->sandbox compartment

@@ -1,0 +1,9 @@
+Cloud Account: prasannakumarmadiraju
+Username: prasannakumarmadiraju@gmail.com
+pwd: Orrvp@11
+
+username: ociadmin
+pwd: Orrvp@1125
+
+cd /d "J:\Tech Skills\Oracle\Notes_Scripts\Queries" --local repo
+https://github.com/pkmadiraju/Oracle_DBA_Scripts.git --hub repo

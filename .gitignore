@@ -1,0 +1,16 @@
+# Ignore Oracle Wallets and Credentials
+*.p12
+*.sso
+*.lck
+wallet/
+tnsnames.ora
+*.pem
+
+# Ignore Terraform State (contains sensitive metadata)
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Ignore local OS junk
+.DS_Store
+Thumbs.db
