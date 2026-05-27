@@ -1,0 +1,6 @@
+
+
+Scenario:  Application team recently deployed release patch on a particular set of tables. They need to verify if queries related to particular table 'T' has good performance or not..
+
+
+SQL> SELECT a.sid,a.owner,a.type,s.username,s.program,s.module,s.sql_id,sq.sql_text from v$access a,v$session s,v$sql sq where a.sid=s.sid and sq.sql_id = s.sql_id and a.object='T';

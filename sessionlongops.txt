@@ -1,0 +1,17 @@
+
+When to look at v$session_longops? 
+
+1)Rman Backup and Restore
+2)Parallel Query(Large chunks)
+3)Recovery ( Crash and Media )
+4)Large Full Table scans 
+5)Sorting
+6)Stats job
+7)If the table scan exceeds 10,000 formatted blocks 
+8)operation is greater than 6 seconds
+
+Exception where view does not record
+
+1)Index long operations(long time)
+
+https://docs.oracle.com/cd/B19306_01/server.102/b14237/dynviews_2092.htm#REFRN30227

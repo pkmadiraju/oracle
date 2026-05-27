@@ -1,0 +1,28 @@
+You are in situation to quickly kill multiple sessions which consume high resource on database which cause performance issues. You can use the below scripts to quickly act based on your scenario
+
+SQL script to kill all the sessions from the database — Note: Use this script with caution as this will kill all the sessions from the database
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session;
+SQL script to kill all the sessions run with username called TEST
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE USERNAME LIKE '%KISH%' and sql_id='dpgzymcxvwmba';
+SQL script to kill all the sessions which run with user TEST and which are INACTIVE
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE USERNAME LIKE '%TEST%' AND STATUS='INACTIVE'
+SQL script to kill all the sessions which run with user TEST and which are INACTIVE and run for more than 10000 seconds. You can modify the script according to your scenario
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE USERNAME LIKE '%TEST%' AND STATUS='INACTIVE' and LAST_CALL_ET > 10000;
+SQL script to kill all the sessions which run with user TEST and which are INACTIVE and run for more than 10000 seconds and logged on users from last 24 hours
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE USERNAME LIKE '%TEST%' AND STATUS='INACTIVE' and LAST_CALL_ET > 10000 and LOGON_TIME > sysdate - 1 ;
+SQL script to kill all the sessions which run sql queries
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE SQL_ID is NOT NULL;
+SQL script to kill all the sessions which has blockings
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE BLOCKING_SESSION is NOT NULL;
+Script to kill RMAN jobs
+
+
+
+SELECT 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''' IMMEDIATE;' FROM v$session WHERE CLIENT_INFO LIKE '%rman%;
